@@ -32,8 +32,9 @@ export class LoginComponent implements OnInit {
     //this.ts.saveToken("sdkfjskfsdkjfskfkjfskfskfnd");
     this.as.login(this.profileForm.value.userName,this.profileForm.value.password).subscribe(
       (data)=>{
-        this.ts.saveToken(data.token)
+        this.ts.saveToken(data.response)
         this.ts.saveUser(data)
+        this.ts.storeTokenDetails(data.response);
         this.router.navigate(['/home'])
         this.errormsg='';
       },

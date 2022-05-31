@@ -16,5 +16,10 @@ export class NavbarComponent implements OnInit {
   onLogout(){
     this.ts.signOut();
     this.router.navigate(['/']);
+
+  }
+  getUserName():string{
+    console.log(this.ts.getUserName())
+    return this.ts.getUserName();
   }
 }

@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PiechartComponent } from './piechart/piechart.component';
 import { OrgtreeComponent } from './orgtree/orgtree.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { OrgtreeComponent } from './orgtree/orgtree.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,ReactiveFormsModule,HttpClientModule
+    AppRoutingModule,ReactiveFormsModule,HttpClientModule,NgChartsModule
   ],
   providers: [authInterceptorProviders,HttpClient],
   bootstrap: [AppComponent]
