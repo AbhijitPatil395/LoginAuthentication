@@ -11,22 +11,24 @@
             <h3>Please login Here</h3>
           <form  [formGroup]="profileForm" (ngSubmit)="onSubmit()">
             <!-- Email input -->
-            <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
-                class="alert">
-            <div *ngIf="name?.errors?.['required']" class="alert-danger">
-                Name is required.
-            </div>
-            <div *ngIf="name?.errors?.['minlength']">
-                Name must be at least 4 characters long.
-            </div>
-        </div>
+            <!-- <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+                class="alert"> -->
+                <div *ngIf="name?.errors?.['email']" class="alert-danger">
+                  Invalid Email
+              </div>
+              <div *ngIf="name?.errors?.['required']" class="alert-danger">
+                  Name is required.
+              </div>
+            <!-- </div> -->
             <div class="form-outline mb-4">
               <input type="email" id="userName" class="form-control form-control-lg" formControlName="userName" />
               <label class="form-label" for="userName" >User Name</label>
             </div>
             
           
-        
+            <div *ngIf="password?.errors?.['minlength']" class="alert-danger">
+              Password at least have 4 characters.
+          </div>
             <!-- Password input -->
             <div class="form-outline mb-4">
               <input type="password" id="pass" class="form-control form-control-lg" formControlName="password" />
