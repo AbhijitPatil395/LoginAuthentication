@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   errormsg:string='';
   constructor(private fb:FormBuilder,private ts:TokenStorageService,private router:Router,private as:AuthService) { }
   profileForm = this.fb.group({
-    userName: ['',Validators.required],
+    userName: ['',Validators.required,Validators.email],
     password: ['']
   }); 
   get name(){
