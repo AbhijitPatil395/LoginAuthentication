@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PiechartComponent } from './piechart/piechart.component';
 import { OrgtreeComponent } from './orgtree/orgtree.component';
 import { NgChartsModule } from 'ng2-charts';
+import { AddkpiComponent } from './addkpi/addkpi.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NgChartsModule } from 'ng2-charts';
     DashboardComponent,
     NavbarComponent,
     PiechartComponent,
-    OrgtreeComponent
+    OrgtreeComponent,
+    AddkpiComponent
   ],
   imports: [
     BrowserModule,

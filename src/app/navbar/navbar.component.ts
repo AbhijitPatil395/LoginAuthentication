@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
 
   }
   getUserName():string{
-    console.log(this.ts.getUserName())
+    //console.log(this.ts.getUserName())
     return this.ts.getUserName();
   }
 }

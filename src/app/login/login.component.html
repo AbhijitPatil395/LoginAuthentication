@@ -3,7 +3,7 @@
     <div class="container py-5 h-100">
       <div class="row d-flex align-items-center justify-content-center h-100">
         <div class="col-md-8 col-lg-7 col-xl-6">
-          <h3>Welcome to 4E Software Systems</h3><br>
+          <h3>Welcome to 4E Software KPI management Systems</h3><br>
           <img src="https://media.istockphoto.com/photos/cyber-security-it-engineer-working-on-protecting-network-against-picture-id1322517295"
             class="img-fluid" alt="Phone image">
         </div>
@@ -16,7 +16,7 @@
                 <div *ngIf="name?.errors?.['email']" class="alert-danger">
                   Invalid Email
               </div>
-              <div *ngIf="name?.errors?.['required']" class="alert-danger">
+              <div *ngIf="name?.errors?.['required']&& (name?.dirty || name?.touched)"  class="alert-danger">
                   Name is required.
               </div>
             <!-- </div> -->

@@ -31,7 +31,7 @@ export class PiechartComponent implements OnInit
 
   pieChartData:any = [
     { 
-        data: [12,50,25,30,50,50,67]
+        data: [5,50,25,30,50]
     }
   ];
 
