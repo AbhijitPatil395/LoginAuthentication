@@ -12,9 +12,6 @@ export class OrgtreeComponent implements OnInit {
   constructor(private ts:TokenStorageService,private router:Router) { }
 
   ngOnInit(): void {
-    if(!this.ts.getToken())
-    this.router.navigate(['/']);
-
   }
 
 }

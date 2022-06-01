@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
         this.ts.saveToken(data.response)
         this.ts.saveUser(data)
         this.ts.storeTokenDetails(data.response);
+        console.log("ready to navigtate")
         this.router.navigate(['/home'])
         this.errormsg='';
       },

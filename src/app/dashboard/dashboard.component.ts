@@ -14,14 +14,10 @@ export class DashboardComponent implements OnInit {
   constructor(private ts:TokenStorageService,private router:Router,private as:AuthService) { }
   arrUsers:user[]=[];
   ngOnInit(): void {
-    console.log(this.ts.isTokenExpired(this.ts.getToken()))
-    if(!this.ts.getToken())
-    this.router.navigate(['/'])
-    //this.getUsers();
   }
   onLogout(){
     this.ts.signOut();
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
   getUsers(){
     this.as.getUsers().subscribe(

@@ -39,17 +39,23 @@ export class TokenStorageService {
    return '';
   }
   storeTokenDetails(token:any){
+    if(token)
+    {
     this.firstname = (JSON.parse(atob(token.split('.')[1]))).firstname;
     localStorage.setItem('first_name',this.firstname);
     this.lastname=(JSON.parse(atob(token.split('.')[1]))).lastname;
     localStorage.setItem('last_name',this.lastname);
     this.isAdmin=(JSON.parse(atob(token.split('.')[1]))).isAdmin;
     localStorage.setItem('isAdmin',this.isAdmin?'true':'false');
+    }
 
   }
   isTokenExpired(token:any) {
+    if(token)
+    {
     const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
     return (Math.floor((new Date).getTime() / 1000)) >= expiry;
-
+    }
+    return true;
   }
 }
