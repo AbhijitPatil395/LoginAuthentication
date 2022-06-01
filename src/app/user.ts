@@ -3,5 +3,5 @@ export class user{
     email:string='';
     first_name:string='';
     last_name:string='';
-    avstar:string=''
+    avatar:string=''
 }

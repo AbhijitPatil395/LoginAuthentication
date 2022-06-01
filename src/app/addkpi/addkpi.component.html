@@ -2,23 +2,65 @@
 
 <h2>Enter KPI details</h2>
 
-<form>
+<form [formGroup]="kpiForm" (ngSubmit)="onSubmit()">
+
+  <label for="title">KPI Title: </label>
+  <input   name="title" id="title" type="text" formControlName="title">
+  <br>
+  <label for="department">Department: </label>
+  <select formControlName="departmentid">
+    <option *ngFor="let dept of getArrDepts()" [value]="dept.id">{{dept.name}}</option>
+  </select>
+  <br>
+
+  <label for="datacapFreq">Data Capture Frequency: </label>
+  <select id="datacapFreq" (change)="setDataCapFreq($event)" formControlName="dataCaptureFrequency">
+    <option *ngFor="let dept of getArrDataCapFreq()" [value]="dept._id">{{dept.value}}</option>
+  </select><br>
+  <label for="reviewFreq">Review Frequency: </label>
+  <select id="reviewFreq" formControlName="reviewFrequency">
+    <option *ngFor="let dept of getArrReviewFreq()" [value]="dept._id">{{dept.value}}</option>
+  </select><br>
+  <label for="reviewFreq">Select Perspective: </label>
+  <select id="reviewFreq" formControlName="perspective">
+    <option *ngFor="let dept of getArrPerspectives()" [value]="dept._id">{{dept.perspective}}</option>
+  </select><br>
+   <div class="form-group col-md-3 row-md-3">
+        <label for="description">Description</label>
+        <!-- <input type="textarea" rows="4" class="form-control" id="description" placeholder="Description"> -->
+        <textarea id="description" rows="4" cols="50" formControlName="goalDescription"></textarea>
+    </div>
+    <div class="form-group col-md-3 row-md-3">
+      <label for="description">Remark</label>
+      <!-- <input type="textarea" rows="4" class="form-control" id="description" placeholder="Description"> -->
+      <textarea id="description" rows="2" cols="50" formControlName="remark"></textarea>
+  </div>
+<button type="submit">Submit</button>
+
+</form>
+
+<!-- <p>{{kpiForm.value.userName}}</p>
+<p>{{kpiForm.value.password}}</p> -->
+
+
+<hr>
+<!-- <form>
     <div class="form-row">
-      <div class="form-group col-sm-3">
+      <div class="form-group col-md-4">
         <label for="title">KPI Title</label>
         <input type="title" class="form-control" id="inputEmail4" placeholder="Title">
       </div>
-      <div class="form-group col-md-3 row-md-3">
-        <label for="description">Description</label>
-        <!-- <input type="textarea" rows="4" class="form-control" id="description" placeholder="Description"> -->
-        <textarea id="description" rows="4" cols="50"></textarea>
-    </div>
+     
     <div class="form-group col-md-3 row-md-3">
         <label for="month">Select month</label>
-        <!-- <input type="textarea" rows="4" class="form-control" id="description" placeholder="Description"> -->
         <input type="month" id="month">
     </div>
+    <div class="form-group col-md-3 row-md-3">
+      <select id="reviewFreq" formControlName="reviewFrequency">
+        <option *ngFor="let dept of getArrReviewFreq()" [value]="dept.order">{{dept.value}}</option>
+      </select><br>
+  </div>
 </div>
     
     <button type="submit" class="btn btn-primary">Create KPI</button>
-  </form>
+  </form> -->
