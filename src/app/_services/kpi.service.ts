@@ -9,6 +9,9 @@ const perspective_API='https://dev-api.tqmi.io/setting-management/api/perspectiv
 const create_KPI='https://dev-api.tqmi.io/org-goal-management/api/goal'
 const types_API='https://dev-api.tqmi.io/setting-management/api/kpi-types';
 const category_API='https://dev-api.tqmi.io/setting-management/api/kpi-categories'
+const get_KPI='https://dev-api.tqmi.io/org-goal-management/api/goal/get-kpi-list-given-date-range?start=1648751400000&end=1680287399000&includeViewOnly=true'
+const get_financialYear_API='https://dev-api.tqmi.io/setting-management/api/financial-years-list'
+const get_Month_Range_API='https://dev-api.tqmi.io/setting-management/api/month-range'
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -38,7 +41,15 @@ export class KpiService {
     return this.http.get(category_API);
   }
   postKPI(kpi:any):Observable<any>{
-    console.log(JSON.stringify(kpi));
     return this.http.post(create_KPI,kpi,httpOptions);
+  }
+  getKPI():Observable<any>{
+    return this.http.get(get_KPI);
+  }
+  getFinancialYear():Observable<any>{
+    return this.http.get(get_financialYear_API);
+  }
+  getMonthRange():Observable<any>{
+    return this.http.get(get_Month_Range_API);
   }
 }

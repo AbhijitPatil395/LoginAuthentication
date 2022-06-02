@@ -15,7 +15,7 @@ export class AuthGuardService implements CanActivate {
     let token=this.ts.getToken();
     console.log(token);
     console.log(this.ts.isTokenExpired(token))
-    if (!token && this.ts.isTokenExpired(token)) {
+    if (!token || this.ts.isTokenExpired(token)) {
       this.router.navigate(['/login'])
       return false;
     }

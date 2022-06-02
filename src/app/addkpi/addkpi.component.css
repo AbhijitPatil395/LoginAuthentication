@@ -7,3 +7,12 @@ div{
 h3{
     align-content: center;
 }
+input{
+    width: 390px;
+}
+select{
+    width: 390px;
+}
+.short{
+    width: 150px;
+}

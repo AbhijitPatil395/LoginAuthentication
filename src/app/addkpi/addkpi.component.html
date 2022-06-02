@@ -64,6 +64,50 @@
             </select><br>
           </td>
         </tr>
+
+        <tr><td> <label for="fianancialYear">Select Financial Year : </label></td>
+          <td>:</td>
+          <td>
+            <select id="fianancialYear" (change)="setFinancialYear($event)" formControlName="financialYearEnd">
+              <option *ngFor="let fy of getArrFinancialYears()" [value]="fy.endUnix">FY&nbsp;{{(fy.startUnix|date:'yyyy')}}&nbsp; to &nbsp;{{fy.endUnix|date:'yyyy'}}</option>
+            </select><br>
+          </td>
+        </tr>
+        <tr><td> <label for="monthRange">Select Month Range : </label></td>
+          <td>:</td>
+          <td>
+            <!-- <ng-multiselect-dropdown (onSelect)="setMonthsRange($event)" (onDeSelect)="deSelectMonthsRange($event)"
+            [settings]="dropdownSettings"
+            [data]="dropdownList">
+            </ng-multiselect-dropdown> -->
+            <ng-select #slct
+            [items]="dropdownList"
+            bindLabel="item_text"
+            placeholder="Select Category"
+            appendTo="body"
+            [multiple]="true"
+            [(ngModel)]="selectedMonths" [ngModelOptions]="{standalone:true}"
+            (add)="setMonthsRange($event)" (remove)="deSelectMonthsRange($event)"
+            >
+          </ng-select>
+
+          </td>
+        </tr>
+        <div formArrayName="captureData">
+          <div *ngFor="let cdata of captureData.controls; let i=index">
+            <!-- The repeated alias template -->
+            <div formGroupName="{{i}}">
+              <button type="button" (click)="removeAt(i)">Remove</button>
+              <h4>{{selectedMonths[i].item_text}}</h4>
+            Target:
+           <input class="short" id="cdata-{{ i }}" type="text" formControlName="target"/>
+           Lower:
+            <input class="short" id="cdata-{{ i +1}}" type="text" formControlName="lower"/>
+            Upper:
+            <input class="short" id="cdata-{{ i +2}}" type="text" formControlName="upper"/>
+          </div>
+          </div>
+        </div>
         <tr>
           <td> 
             <label for="reviewFreq">Select Perspective: </label>
