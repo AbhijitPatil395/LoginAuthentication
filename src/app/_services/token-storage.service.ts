@@ -34,16 +34,17 @@ export class TokenStorageService {
    let fname=localStorage.getItem('first_name');
    let lname=localStorage.getItem('last_name');
    if(fname && lname){
-     return fname+' '+lname;
+     return fname+'.'+lname;
    }
    return '';
   }
   storeTokenDetails(token:any){
     if(token)
     {
-    this.firstname = (JSON.parse(atob(token.split('.')[1]))).firstname;
+    this.firstname = (JSON.parse(atob(token.split('.')[1]))).firstname.toLowerCase();
+    console.log("first name:"+this.firstname)
     localStorage.setItem('first_name',this.firstname);
-    this.lastname=(JSON.parse(atob(token.split('.')[1]))).lastname;
+    this.lastname=(JSON.parse(atob(token.split('.')[1]))).lastname.toLowerCase();
     localStorage.setItem('last_name',this.lastname);
     this.isAdmin=(JSON.parse(atob(token.split('.')[1]))).isAdmin;
     localStorage.setItem('isAdmin',this.isAdmin?'true':'false');

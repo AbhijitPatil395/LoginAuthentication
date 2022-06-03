@@ -22,5 +22,27 @@ export class AuthGuardService implements CanActivate {
     
     return true;
   }
+  // canActivate(): Observable<boolean> {
+  //   console.log("inside guard")
+  //   let token=this.ts.getToken();
+  //   console.log(token);
+  //   console.log(this.ts.isTokenExpired(token))
+
+  //   // if (!token || this.ts.isTokenExpired(token)) {
+  //   //   this.router.navigate(['/login'])
+  //   this.ks.getCategory().subscribe((data)=>{
+  //     if(data)
+  //     return of(true)
+     
+     
+  //   },(err)=>{
+  //     return of(false)
+  //   });
+  //   //   // return false;
+  //   // }
+     
+    
+  //   // return true;
+  // }
 
 }

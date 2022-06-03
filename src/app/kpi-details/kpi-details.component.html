@@ -1,3 +1,19 @@
 <p>kpi-details works!</p>
-<h3 >{{currentKpi.title}}</h3>
+
+<table class="table">
+    <thead>
+        <h3 >{{currentKpi.title}}</h3>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="col">Owner :</td><td scope="col">{{currentKpi.ownerFirstname}}  {{currentKpi.ownerLastname}}</td>
+        </tr>
+        <tr>
+            <td scope="col">Owner Supervisor:</td><td scope="col">{{currentKpi.ownerSupervisorId}}</td>
+        </tr>
+        <tr>
+            <td scope="col">Department:</td><td scope="col">{{currentKpi.departmentName}}</td>
+        </tr>
+    </tbody>
+</table>
 <pre><h5>{{currentKpi|json}}</h5></pre>

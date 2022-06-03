@@ -87,7 +87,7 @@
             appendTo="body"
             [multiple]="true"
             [(ngModel)]="selectedMonths" [ngModelOptions]="{standalone:true}"
-            (add)="setMonthsRange($event)" (remove)="deSelectMonthsRange($event)"
+            (add)="setMonthsRange($event)" (remove)="deSelectMonthsRange(selectedMonths)"
             >
           </ng-select>
 
@@ -114,7 +114,7 @@
           </td>
           <td>:</td>
           <td>
-            <select id="reviewFreq" formControlName="perspective">
+            <select (change)="setPrefix($event)" id="reviewFreq" formControlName="perspective">
               <option *ngFor="let dept of getArrPerspectives()" [value]="dept._id">{{dept.perspective}}</option>
             </select><br>
           </td>

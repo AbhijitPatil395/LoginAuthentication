@@ -4,6 +4,8 @@ import { KpiService } from '../_services/kpi.service';
 import { NgSelectModule } from "@ng-select/ng-select"
 import { NgModule } from "@angular/core";
 import { IDropdownSettings, } from 'ng-multiselect-dropdown';
+import { TokenStorageService } from '../_services/token-storage.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-addkpi',
   templateUrl: './addkpi.component.html',
@@ -11,10 +13,12 @@ import { IDropdownSettings, } from 'ng-multiselect-dropdown';
 })
 export class AddkpiComponent implements OnInit {
 
+  userName:string='';
+  kpiForm!:FormGroup;
   dropdownSettings:IDropdownSettings={};
   //drop:FormGroup  ;
   dropdownList:any[] = [];
-  constructor(private fb:FormBuilder,private kpi:KpiService) { }
+  constructor(private ts:TokenStorageService,private fb:FormBuilder,private kpi:KpiService,private router:Router) { }
 
   arrDepartments:any[]=[];
   arrDataCaptureFreq:any[]=[];
@@ -28,81 +32,72 @@ export class AddkpiComponent implements OnInit {
   arrMonthNames:any[]=[];
   dataCapFreq:number=0;
   selectedMonths:any[]=[];
-
+  
   captureDateGroup:any[]=[];
   months:string[]=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-
-kpiForm = this.fb.group(
-  {
-      title: ['',[Validators.required]],   //Validators.minLength(4)
-      departmentId: ['',[Validators.required]],    //Validators.minLength(4)
-      dataCaptureFrequency:['',[Validators.required]],
-      reviewFrequency:['',[Validators.required]],
-      goalDescription:[''],
-      perspective:['',[Validators.required]],
-      remark:[''],
-      annualTarget: 100,
-      actionLimit: "MANUAL",  
-      category: "5ea2c50f1d4ec94491c08030",
-      isTypeKPI: true,
-      type: "606573e173d7e41e2e59a4b0",
-      parentId: null,
-      perspectivePrefix: "I",
-      directionOfGoodness: "Up",
-      ytdCalculation: "SUM",
-      weightage: 1,
-      // captureData: [
-      //         [{
-      //             target: 0,
-      //             lower: 0,
-      //             upper: 0,
-      //             startDate: "2022-05-01T00:00:00",
-      //             endDate: "2022-05-31T23:59:59",
-      //             indicator: 2,
-      //             disabled: false,
-      //             upperValueType: "ABSOLUTE",
-      //             lowerValueType: "ABSOLUTE"
-      //         }]
-      // ],
-      captureData: this.fb.array([
-        // this.fb.group({
-        //           target: 0,
-        //           lower: 0,
-        //           upper: 0,
-        //           startDate: "2022-05-01T00:00:00",
-        //           endDate: "2022-05-31T23:59:59",
-        //           indicator: 2,
-        //           disabled: false,
-        //           upperValueType: "ABSOLUTE",
-        //           lowerValueType: "ABSOLUTE"
-        // })
-      ]),
-      unitOfMeasurement: "606573e173d7e41e2e59a4ab",
-      goalFormula: null,
-      isActive: true,
-      owners: {
-          individuals: [
-                  {
-                      employeeId: "abhijit.patil",
-                      isPrimary: true
-                  }
-              ]
-          },
-          viewers: {
-              individuals: [],
-              groups: []
-          },
-      financialYearStart: 1648751400000,
-      financialYearEnd: 1680287399000,
-      dataAggregationFrequency: "62833d7b412ac9eebe3a3c17",
-      dataAggregationMethod: "SUM"
-}); 
+setKpiForm(){
+      this.kpiForm = this.fb.group(
+        {
+            title: ['',[Validators.required]],   //Validators.minLength(4)
+            departmentId: ['',[Validators.required]],    //Validators.minLength(4)
+            dataCaptureFrequency:['',[Validators.required]],
+            reviewFrequency:['',[Validators.required]],
+            goalDescription:[''],
+            perspective:['',[Validators.required]],
+            remark:[''],
+            annualTarget: 100,
+            actionLimit: "MANUAL",  
+            category: "5ea2c50f1d4ec94491c08030",
+            isTypeKPI: true,
+            type: "606573e173d7e41e2e59a4b0",
+            parentId: null,
+            perspectivePrefix: "I",
+            directionOfGoodness: "Up",
+            ytdCalculation: "SUM",
+            weightage: 1,
+            captureData: this.fb.array([
+              // this.fb.group({
+              //           target: 0,
+              //           lower: 0,
+              //           upper: 0,
+              //           startDate: "2022-05-01T00:00:00",
+              //           endDate: "2022-05-31T23:59:59",
+              //           indicator: 2,
+              //           disabled: false,
+              //           upperValueType: "ABSOLUTE",
+              //           lowerValueType: "ABSOLUTE"
+              // })
+            ]),
+            unitOfMeasurement: "606573e173d7e41e2e59a4ab",
+            goalFormula: null,
+            isActive: true,
+            owners: {
+                individuals: [
+                        {
+                            employeeId: this.userName,
+                            isPrimary: true
+                        }
+                    ]
+                },
+                viewers: {
+                    individuals: [],
+                    groups: []
+                },
+            financialYearStart: 1648751400000,
+            financialYearEnd: 1680287399000,
+            dataAggregationFrequency: "62833d7b412ac9eebe3a3c17",
+            dataAggregationMethod: "SUM"
+      }); 
+}
 get captureData() {
   return this.kpiForm.get('captureData') as FormArray;
 }
 
   ngOnInit(): void {
+
+    this.userName=this.ts.getUserName();
+    console.log(this.userName)
     this.getDepartments();
     this.getDataCaptureFreq();
     this.getDataRevieewFreq();
@@ -133,12 +128,19 @@ get captureData() {
       disabledField:'1'
     
     };
+
+    this.setKpiForm();
   }
   onSubmit()
   {
+    console.log("in on submit");
     this.kpi.postKPI(this.kpiForm.value).subscribe(
-        (data)=>{ alert("KPI successfully created!!!")},
-        (err)=>{console.log("problem in kpi posting!!!!!")})
+        (data)=>{ 
+          alert("KPI successfully created!!!")
+          this.router.navigate(['/home'])
+        },
+        (err)=>{alert("Problem in kpi posting!!!!!")})
+
     console.log(this.kpiForm.value)
    console.log("in on submit");
   }
@@ -200,14 +202,13 @@ get captureData() {
   getPerspectives(){
     this.kpi.getPerspectives().subscribe((data)=>{
       this.arrPerspectives=data.response;
-      console.log(this.arrPerspectives);
+      console.log("Prespectives");console.log(this.arrPerspectives);
     },
     (err)=>{console.log(err);})
   }
   getTypes(){
     this.kpi.getTypes().subscribe((data)=>{
       this.arrTypes=data.response;
-
       console.log(this.arrTypes);
     },(err)=>{console.log(err);})
   }
@@ -248,8 +249,9 @@ get captureData() {
     }
   }
   setFinancialYear(event:any){
-      console.log(event)
-    
+    console.log(event.target.value)
+    this.kpiForm.controls['financialYearStart'].setValue(this.arrFinancialYear.find((elem)=>elem.endUnix==event.target.value).startUnix.toString());
+     console.log(this.kpiForm.value)
   }
   setMonthsRange(event:any)
   {
@@ -287,6 +289,9 @@ get captureData() {
     this.captureData.removeAt(i);
 
     console.log(this.captureData.value)
+  }
+  setPrefix(event:any){
+    this.kpiForm.controls['perspectivePrefix'].setValue(this.arrPerspectives.find((e)=>e._id==event.target.value).perspectivePrefix);
   }
 
   
