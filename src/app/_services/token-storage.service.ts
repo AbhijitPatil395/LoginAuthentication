@@ -12,6 +12,7 @@ export class TokenStorageService {
   firstname:string='';
   lastname:string='';
   isAdmin!:boolean;
+  isTokenAvailable:boolean=false;
   public saveToken(token: string): void {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.setItem(TOKEN_KEY, token);

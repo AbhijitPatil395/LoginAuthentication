@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
       },
       (err)=>{
         this.errormsg="Invadlid userId or Password"
+        console.log(this.errormsg)
       }
 
     );
