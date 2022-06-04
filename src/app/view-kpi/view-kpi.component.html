@@ -1,10 +1,9 @@
 
 <div *ngFor="let kpi of arrKpi" class="card" >
-    <h5 class="card-header">{{kpi.title}}</h5>
+    
     <div class="card-body">
       <!-- <h5 class="card-title">Special title treatment</h5> -->
-      <p class="card-text"><b>Department</b> : {{kpi.departmentName}}</p>
-      <p class="card-text"><b>Owner</b>      : {{kpi.ownerFirstname}} {{kpi.ownerLastname}}</p>
-      <button type="button" (click)="onKpiDetails(kpi._id)"> Show Details</button>
+      <h5 class="card-header">{{kpi.title}}</h5>
+      <button type="button" (click)="onKpiDetails(kpi)"> Show Details</button>
     </div>
   </div>

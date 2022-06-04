@@ -1,19 +1,19 @@
 <p>kpi-details works!</p>
 
-<table class="table">
+<table *ngIf="kpi.title" class="table">
     <thead>
-        <h3 >{{currentKpi.title}}</h3>
+        <h3 >{{kpi.title}}</h3>
     </thead>
     <tbody>
         <tr>
-            <td scope="col">Owner :</td><td scope="col">{{currentKpi.ownerFirstname}}  {{currentKpi.ownerLastname}}</td>
+            <td scope="col">Owner :</td><td scope="col">{{kpi.ownerFirstname}}  {{kpi.ownerLastname}}</td>
         </tr>
         <tr>
-            <td scope="col">Owner Supervisor:</td><td scope="col">{{currentKpi.ownerSupervisorId}}</td>
+            <td scope="col">Owner Supervisor:</td><td scope="col">{{kpi.ownerSupervisorId}}</td>
         </tr>
         <tr>
-            <td scope="col">Department:</td><td scope="col">{{currentKpi.departmentName}}</td>
+            <td scope="col">Department:</td><td scope="col">{{kpi.departmentName}}</td>
         </tr>
     </tbody>
 </table>
-<pre><h5>{{currentKpi|json}}</h5></pre>
+<pre><h5>{{kpi|json}}</h5></pre>

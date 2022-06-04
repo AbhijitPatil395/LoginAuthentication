@@ -10,7 +10,6 @@ import { TokenStorageService } from '../_services/token-storage.service';
 export class NavbarComponent implements OnInit {
 
   constructor(private ts:TokenStorageService,private router:Router) { }
-
   ngOnInit(): void {
   }
   onLogout(){
@@ -20,4 +19,5 @@ export class NavbarComponent implements OnInit {
   getUserName():string{
     return this.ts.getUserName();
   }
+
 }

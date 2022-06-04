@@ -14,29 +14,30 @@ export class DashboardComponent implements OnInit
 {
 
   constructor(private ts:TokenStorageService,private router:Router,private as:AuthService) { }
-  arrUsers:user[]=[];
-  kpi_Id:string='';
+  // arrUsers:user[]=[];
+  kpi:any;
   ngOnInit(): void {
   }
-  @ViewChild('kd') kdChild:any;
+  // @ViewChild('kd') kdChild:any;
+
   onLogout(){
     this.ts.signOut();
     this.router.navigate(['/login']);
   }
-  getUsers(){
-    this.as.getUsers().subscribe(
-      (data)=>{
-        console.log(data)
-        this.arrUsers=data.data;
-        console.log(this.arrUsers)
-      }
-    )
-   
-  }
+  // getUsers(){
+  //   this.as.getUsers().subscribe(
+  //     (data)=>{
+  //       console.log(data)
+  //       this.arrUsers=data.data;
+  //       console.log(this.arrUsers)
+  //     }
+  //   )
+  // }
   changeCurrentId(event:any){
-    this.kpi_Id=event;
-    console.log("in dash board:"+this.kpi_Id);
-    //this.kdChild.getAllKpi();
+    console.log(event)
+    this.kpi=event;
+    console.log("in dash board:"+this.kpi);
+    console.log(this.kpi)
 
   }
 }

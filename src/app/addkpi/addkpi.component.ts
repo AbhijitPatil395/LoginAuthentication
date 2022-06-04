@@ -35,7 +35,7 @@ export class AddkpiComponent implements OnInit {
   
   captureDateGroup:any[]=[];
   months:string[]=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
+  displayMonth:any[]=[];
 setKpiForm(){
       this.kpiForm = this.fb.group(
         {
@@ -123,7 +123,7 @@ get captureData() {
     ];
     //  this.dropdownList=this.arrMonthNames;
     this.dropdownSettings = {
-      idField: 'item_id',
+      idField: 'id',
       textField: 'item_text',
       disabledField:'1'
     
@@ -275,6 +275,7 @@ get captureData() {
     
   }
   deSelectMonthsRange(event:any){
+    console.log(event)
     console.log(event.value.id);
     this.selectedMonths=this.selectedMonths.filter((e)=>e.id!=event.id);
     // console.log(this.selectedMonths)
@@ -286,8 +287,10 @@ get captureData() {
     // console.log(this.captureData.value)
   }
   removeAt(i:number){
+    console.log(i);
     this.captureData.removeAt(i);
-
+    let n=this.selectedMonths[i];
+    this.selectedMonths=this.selectedMonths.filter((e)=>e.id!=n.id);
     console.log(this.captureData.value)
   }
   setPrefix(event:any){

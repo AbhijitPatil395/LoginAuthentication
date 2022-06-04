@@ -1,13 +1,10 @@
-
-<app-navbar></app-navbar>
-
 <div class="row">
     <h5>List of KPI's</h5>
     <div class="col-3" style="height: 30rem;overflow-y: auto;">
         <app-view-kpi (currentId)="changeCurrentId($event)"></app-view-kpi>
     </div>
     <div class="col-8" style="height: 30rem;overflow-y: auto;">
-        <app-kpi-details #kd [kpi_id]="kpi_Id"></app-kpi-details>
+        <app-kpi-details #kd [kpi]="kpi"></app-kpi-details>
 
     </div>
 </div>

@@ -1,11 +1,11 @@
-<app-navbar></app-navbar>
+
 
 <h3>Enter KPI details</h3>
 <div class="row">
-  <div class="col-4">
+  <div class="col-2">
       
   </div>
-  <div class="col-8">
+  <div class="col-10">
     <form [formGroup]="kpiForm" (ngSubmit)="onSubmit()">
     <table>
       <thead></thead>
@@ -80,7 +80,7 @@
             [settings]="dropdownSettings"
             [data]="dropdownList">
             </ng-multiselect-dropdown> -->
-            <ng-select #slct
+            <ng-select #slct 
             [items]="dropdownList"
             bindLabel="item_text"
             placeholder="Select Category"
@@ -97,14 +97,15 @@
           <div *ngFor="let cdata of captureData.controls; let i=index">
             <!-- The repeated alias template -->
             <div formGroupName="{{i}}">
-              <button type="button" (click)="removeAt(i)">Remove</button>
-              <h4>{{selectedMonths[i].item_text}}</h4>
+              
+              <h5>{{selectedMonths[i].item_text}}</h5>
             Target:
            <input class="short" id="cdata-{{ i }}" type="text" formControlName="target"/>
            Lower:
             <input class="short" id="cdata-{{ i +1}}" type="text" formControlName="lower"/>
             Upper:
             <input class="short" id="cdata-{{ i +2}}" type="text" formControlName="upper"/>
+            <button type="button" class="btn-sm-primary" (click)="removeAt(i)">Remove</button>
           </div>
           </div>
         </div>
@@ -137,9 +138,10 @@
             <textarea id="description" rows="1" cols="50" formControlName="remark"></textarea>
           </td>
         </tr>
+        <tr><td></td><td></td><td><button type="submit" class="btn btn-success">Submit</button></td></tr>
       </tbody>
     </table>
-    <button type="submit">Submit</button>
+    <br><hr>
   </form>
   </div>
 </div>

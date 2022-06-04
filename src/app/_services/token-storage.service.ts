@@ -42,7 +42,7 @@ export class TokenStorageService {
     if(token)
     {
     this.firstname = (JSON.parse(atob(token.split('.')[1]))).firstname.toLowerCase();
-    console.log("first name:"+this.firstname)
+    //console.log("first name:"+this.firstname)
     localStorage.setItem('first_name',this.firstname);
     this.lastname=(JSON.parse(atob(token.split('.')[1]))).lastname.toLowerCase();
     localStorage.setItem('last_name',this.lastname);

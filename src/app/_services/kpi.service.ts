@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-const dept_API ='https://dev-api.tqmi.io/setting-management/api/departments'
-const dataCaptureFrequency_API='https://dev-api.tqmi.io/setting-management/api/data-capture-frequency'
-const reviewFrequency_API='https://dev-api.tqmi.io/setting-management/api/data-review-frequency'
-const perspective_API='https://dev-api.tqmi.io/setting-management/api/perspectives'
-const create_KPI='https://dev-api.tqmi.io/org-goal-management/api/goal'
-const types_API='https://dev-api.tqmi.io/setting-management/api/kpi-types';
-const category_API='https://dev-api.tqmi.io/setting-management/api/kpi-categories'
-const get_KPI='https://dev-api.tqmi.io/org-goal-management/api/goal/get-kpi-list-given-date-range?start=1648751400000&end=1680287399000&includeViewOnly=true'
-const get_financialYear_API='https://dev-api.tqmi.io/setting-management/api/financial-years-list'
-const get_Month_Range_API='https://dev-api.tqmi.io/setting-management/api/month-range'
+const dept_API =environment.dev_tqmi_url+'/setting-management/api/departments'
+const dataCaptureFrequency_API=environment.dev_tqmi_url+'/setting-management/api/data-capture-frequency'
+const reviewFrequency_API=environment.dev_tqmi_url+'/setting-management/api/data-review-frequency'
+const perspective_API=environment.dev_tqmi_url+'/setting-management/api/perspectives'
+const create_KPI=environment.dev_tqmi_url+'/org-goal-management/api/goal'
+const types_API=environment.dev_tqmi_url+'/setting-management/api/kpi-types';
+const category_API=environment.dev_tqmi_url+'/setting-management/api/kpi-categories'
+const get_KPI=environment.dev_tqmi_url+'/org-goal-management/api/goal/get-kpi-list-given-date-range?start=1648751400000&end=1680287399000&includeViewOnly=true'
+const get_financialYear_API=environment.dev_tqmi_url+'/setting-management/api/financial-years-list'
+const get_Month_Range_API=environment.dev_tqmi_url+'/setting-management/api/month-range'
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };

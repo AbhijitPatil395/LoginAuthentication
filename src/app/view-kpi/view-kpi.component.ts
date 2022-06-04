@@ -23,7 +23,9 @@ export class ViewKpiComponent implements OnInit {
         console.log(this.arrKpi);
       },(err)=>{console.log(err)})
   }
-  onKpiDetails(id:string){
-    this.currentId.emit(id)
+  onKpiDetails(kpi:any){
+    console.log("in view kpi Emit event")
+    console.log(kpi)
+    this.currentId.emit(kpi)
   }
 }

@@ -14,7 +14,8 @@ const routes: Routes = [
   {path:'addkpi',component:AddkpiComponent,canActivate:[AuthGuard]},
   {path:'getkpi',component:ViewKpiComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
-  {path:'',component:LoginComponent}
+  {path:'',component:LoginComponent},
+  {path:'**',component:LoginComponent}
  
 ];
 
