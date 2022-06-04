@@ -9,7 +9,8 @@ export class TokenStorageService {
   signOut(): void {
     this.storageObj.clear();
   }
-  storageObj:any=localStorage;
+  storageObj:Storage=localStorage;
+  
   firstname:string='';
   lastname:string='';
   isAdmin!:boolean;

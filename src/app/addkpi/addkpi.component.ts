@@ -209,6 +209,7 @@ get captureData() {
   getTypes(){
     this.kpi.getTypes().subscribe((data)=>{
       this.arrTypes=data.response;
+      console.log("types")
       console.log(this.arrTypes);
     },(err)=>{console.log(err);})
   }
