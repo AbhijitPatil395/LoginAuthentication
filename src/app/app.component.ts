@@ -7,10 +7,12 @@ import { TokenStorageService } from './_services/token-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
+  title = 'demoLogin';
+
   constructor(private ts:TokenStorageService){}
 
   ngOnInit(): void {
+    
   }
 
   isToken():boolean

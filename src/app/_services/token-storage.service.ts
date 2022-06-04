@@ -7,33 +7,35 @@ const USER_KEY = 'auth-user';
 export class TokenStorageService {
   constructor() { }
   signOut(): void {
-    localStorage.clear();
+    this.storageObj.clear();
   }
+  storageObj:any=localStorage;
   firstname:string='';
   lastname:string='';
   isAdmin!:boolean;
   isTokenAvailable:boolean=false;
+
   public saveToken(token: string): void {
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.setItem(TOKEN_KEY, token);
+    this.storageObj.removeItem(TOKEN_KEY);
+    this.storageObj.setItem(TOKEN_KEY, token);
   }
   public getToken(): string | null {
-    return localStorage.getItem(TOKEN_KEY);
+    return this.storageObj.getItem(TOKEN_KEY);
   }
   public saveUser(user: any): void {
-    localStorage.removeItem(USER_KEY);
-    localStorage.setItem(USER_KEY, JSON.stringify(user));
+    this.storageObj.removeItem(USER_KEY);
+    this.storageObj.setItem(USER_KEY, JSON.stringify(user));
   }
   public getUser(): any {
-    const user = localStorage.getItem(USER_KEY);
+    const user = this.storageObj.getItem(USER_KEY);
     if (user) {
       return JSON.parse(user);
     }
     return {};
   }
   getUserName():string{
-   let fname=localStorage.getItem('first_name');
-   let lname=localStorage.getItem('last_name');
+   let fname=this.storageObj.getItem('first_name');
+   let lname=this.storageObj.getItem('last_name');
    if(fname && lname){
      return fname+'.'+lname;
    }
@@ -44,11 +46,11 @@ export class TokenStorageService {
     {
     this.firstname = (JSON.parse(atob(token.split('.')[1]))).firstname.toLowerCase();
     //console.log("first name:"+this.firstname)
-    localStorage.setItem('first_name',this.firstname);
+    this.storageObj.setItem('first_name',this.firstname);
     this.lastname=(JSON.parse(atob(token.split('.')[1]))).lastname.toLowerCase();
-    localStorage.setItem('last_name',this.lastname);
+    this.storageObj.setItem('last_name',this.lastname);
     this.isAdmin=(JSON.parse(atob(token.split('.')[1]))).isAdmin;
-    localStorage.setItem('isAdmin',this.isAdmin?'true':'false');
+    this.storageObj.setItem('isAdmin',this.isAdmin?'true':'false');
     }
 
   }
@@ -59,5 +61,13 @@ export class TokenStorageService {
     return (Math.floor((new Date).getTime() / 1000)) >= expiry;
     }
     return true;
+  }
+  changeStorage(flag:boolean){
+    if(flag)
+    this.storageObj=localStorage;
+    else
+    this.storageObj=sessionStorage;
+
+    console.log(this.storageObj)
   }
 }

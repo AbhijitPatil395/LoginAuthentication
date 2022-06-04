@@ -48,5 +48,11 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  onCheckboxClick($event:any){
+    console.log("in checbox click")
+    console.log($event.target.checked)
+    this.ts.changeStorage($event.target.checked)
+  }
+
 
 }
